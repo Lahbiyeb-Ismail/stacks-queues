@@ -13,9 +13,9 @@
  * appears in the Monty file.
  */
 
-void stack_push(stack_t **stack, int value, int line_number)
+void stack_push(stack_t **stack, stack_t **new_node,
+	int value, int line_number)
 {
-	stack_t *new_node;
 
 	if (!value)
 	{
@@ -24,27 +24,27 @@ void stack_push(stack_t **stack, int value, int line_number)
 	}
 
 
-	new_node = malloc(sizeof(stack_t));
-	if (!new_node)
+	*new_node = malloc(sizeof(stack_t));
+	if (!(*new_node))
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
-	new_node->n = value;
+	(*new_node)->n = value;
 
 	/* Check if the stack is empty*/
 	if (!(*stack))
 	{
-		new_node->next = NULL;
-		new_node->prev = NULL;
-		*stack = new_node;
+		(*new_node)->next = NULL;
+		(*new_node)->prev = NULL;
+		*stack = *new_node;
 	}
 	else
 	{
-		new_node->next = *stack;
-		new_node->prev = NULL;
-		(*stack)->prev = new_node;
-		*stack = new_node;
+		(*new_node)->next = *stack;
+		(*new_node)->prev = NULL;
+		(*stack)->prev = *new_node;
+		*stack = *new_node;
 	}
 }

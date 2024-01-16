@@ -41,7 +41,8 @@ void free_stack(stack_t **stack);
 
 /* TASK-0 */
 /* pushes an element to the stack. */
-void stack_push(stack_t **stack, int value, int line_number);
+void stack_push(stack_t **stack, stack_t **new_node,
+	int value, int line_number);
 /* prints all the values on the stack, starting from the top of the stack. */
 void stack_pall(stack_t **stack);
 

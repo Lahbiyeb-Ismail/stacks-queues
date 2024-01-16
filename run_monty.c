@@ -14,6 +14,7 @@ void run_monty(char *filename)
 {
 	FILE *file = fopen(filename, "r");
 	stack_t *Stack;
+	stack_t *new_node;
 	char line[256];
 	unsigned int line_number = 0;
 
@@ -33,7 +34,7 @@ void run_monty(char *filename)
 			{
 				int value = atoi(strtok(NULL, " \n"));
 
-				stack_push(&Stack, value, line_number);
+				stack_push(&Stack, &new_node, value, line_number);
 			}
 			else if (strcmp(token, "pall") == 0)
 				stack_pall(&Stack);
@@ -45,4 +46,5 @@ void run_monty(char *filename)
 
 	fclose(file);
 	free_stack(&Stack);
+	free_stack(&new_node);
 }
