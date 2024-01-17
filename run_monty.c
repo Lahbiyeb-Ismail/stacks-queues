@@ -69,5 +69,7 @@ void run_monty(char *filename)
 		}
 		line_number++;
 	}
+
+	free_memory();
 }
 

@@ -26,7 +26,6 @@ int main(int argc, char **argv)
 	/* Call the run_monty function with the provided filename */
 	run_monty(argv[1]);
 
-	free_memory();
 	/* Return EXIT_SUCCESS if everything executed successfully */
 	return (EXIT_SUCCESS);
 }
