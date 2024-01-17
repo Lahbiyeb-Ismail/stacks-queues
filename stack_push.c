@@ -16,26 +16,26 @@ void stack_push(stack_t **stack, unsigned int line_number)
 {
 	int n, i;
 
-	if (!globals_var.new_node_value)
+	if (!global_var.value)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		dprintf(2, "L%u: ", line_number);
+		dprintf(2, "usage: push integer\n");
 		free_memory();
 		exit(EXIT_FAILURE);
 	}
 
-	for (i = 0; globals_var.new_node_value[i]; i++)
+	for (i = 0; global_var.value[i] != '\0'; i++)
 	{
-		if ((globals_var.new_node_value[i] < '0' ||
-			globals_var.new_node_value[i] > '9')
-			&& globals_var.new_node_value[i] != '-')
+		if (!isdigit(global_var.value[i]) && global_var.value[i] != '-')
 		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			dprintf(2, "L%u: ", line_number);
+			dprintf(2, "usage: push integer\n");
 			free_memory();
 			exit(EXIT_FAILURE);
 		}
 	}
 
-	n = atoi(globals_var.new_node_value);
+	n = atoi(global_var.value);
 
 	add_dnodeint_end(stack, n);
 }
