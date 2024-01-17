@@ -17,6 +17,7 @@ void init_globals_var(FILE *file)
 {
 	globals_var.new_node_value = NULL;
 	globals_var.head = NULL;
+	globals_var.new_node = NULL;
 	globals_var.file = file;
 }
 

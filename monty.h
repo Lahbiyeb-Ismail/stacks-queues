@@ -39,6 +39,7 @@ typedef struct instruction_s
 /**
  * struct globals_var_s - opcode and its function
  * @new_node_value: the opcode
+ * @new_node: the opcode
  * @head: function to handle the opcode
  * @file: function to handle the opcode
  *
@@ -48,6 +49,7 @@ typedef struct instruction_s
 typedef struct globals_var_s
 {
 	char *new_node_value;
+	stack_t *new_node;
 	stack_t *head;
 	FILE *file;
 } globals_var_t;
