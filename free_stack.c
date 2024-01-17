@@ -10,13 +10,13 @@
  * @stack: Pointer to the pointer to the top of the stack.
  */
 
-void free_stack(stack_t **stack)
+void free_stack(stack_t *stack)
 {
 	stack_t *curr_node;
 
-	while ((curr_node = (*stack)) != NULL)
+	while ((curr_node = (stack)) != NULL)
 	{
-		*stack = (*stack)->next;
+		stack = (stack)->next;
 		free(curr_node);
 	}
 }

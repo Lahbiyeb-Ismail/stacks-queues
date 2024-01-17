@@ -65,7 +65,6 @@ void run_monty(char *filename)
 				free_memory();
 				exit(EXIT_FAILURE);
 			}
-
 		}
 		line_number++;
 	}

@@ -19,6 +19,7 @@ void stack_push(stack_t **stack, unsigned int line_number)
 	if (!globals_var.new_node_value)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		free_memory();
 		exit(EXIT_FAILURE);
 	}
 
@@ -29,6 +30,7 @@ void stack_push(stack_t **stack, unsigned int line_number)
 			&& globals_var.new_node_value[i] != '-')
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			free_memory();
 			exit(EXIT_FAILURE);
 		}
 	}
