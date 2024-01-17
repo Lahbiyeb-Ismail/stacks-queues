@@ -1,5 +1,25 @@
 #include "monty.h"
 
+globals_var_t globals_var;
+
+/**
+ * init_globals_var - Initializes global variables for the Monty interpreter.
+ *
+ * Description: This function sets initial values for global
+ * variables used in the Monty interpreter.
+ * It specifically initializes the new_node_value, head, and file
+ * members of the globals_var structure.
+ *
+ * @file: A pointer to the FILE structure representing the Monty bytecode file.
+ */
+
+void init_globals_var(FILE *file)
+{
+	globals_var.new_node_value = NULL;
+	globals_var.head = NULL;
+	globals_var.file = file;
+}
+
 /**
  * run_monty - Executes the Monty bytecode instructions from a given file.
  *
@@ -12,11 +32,13 @@
 
 void run_monty(char *filename)
 {
+	void (*f)(stack_t * *stack, unsigned int line_number);
 	FILE *file = fopen(filename, "r");
 	stack_t *Stack;
-	stack_t *new_node;
 	char line[256];
 	unsigned int line_number = 0;
+
+	init_globals_var(file);
 
 	if (!file)
 	{
@@ -30,21 +52,23 @@ void run_monty(char *filename)
 
 		if (token != NULL)
 		{
-			if (strcmp(token, "push") == 0)
+			f = get_opcodes(token);
+			if (f != NULL)
 			{
-				int value = atoi(strtok(NULL, " \n"));
-
-				stack_push(&Stack, &new_node, value, line_number);
+				globals_var.new_node_value = strtok(NULL, "\n");
+				f(&Stack, line_number);
 			}
-			else if (strcmp(token, "pall") == 0)
-				stack_pall(&Stack);
-			else if (strcmp(token, "pint") == 0)
-				stack_pint(&Stack, line_number);
+			else
+			{
+				fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
+				exit(EXIT_FAILURE);
+			}
+
 		}
 		line_number++;
 	}
 
 	fclose(file);
 	free_stack(&Stack);
-	free_stack(&new_node);
 }
+

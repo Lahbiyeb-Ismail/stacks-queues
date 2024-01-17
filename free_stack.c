@@ -12,21 +12,11 @@
 
 void free_stack(stack_t **stack)
 {
-	/* Initialize pointers to traverse the stack*/
-	stack_t *current = *stack;
-	stack_t *next;
+	stack_t *curr_node;
 
-	/* Iterate through the stack and free each node */
-	while (current != NULL)
+	while ((curr_node = (*stack)) != NULL)
 	{
-		/* Save the next node before freeing the current one */
-		next = current->next;
-		/* Free the current node */
-		free(current);
-		/* Move to the next node */
-		current = next;
+		*stack = (*stack)->next;
+		free(curr_node);
 	}
-
-	/* Set the stack pointer to NULL after freeing all nodes */
-	*stack = NULL;
 }

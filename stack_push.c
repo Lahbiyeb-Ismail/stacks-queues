@@ -8,43 +8,32 @@
  * and exits with failure status.
  *
  * @stack: Pointer to the pointer to the top of the stack.
- * @value: The value to be pushed onto the stack.
  * @line_number: The line number where the "push" operation
  * appears in the Monty file.
  */
 
-void stack_push(stack_t **stack, stack_t **new_node,
-	int value, int line_number)
+void stack_push(stack_t **stack, unsigned int line_number)
 {
+	int n, i;
 
-	if (!value)
+	if (!globals_var.new_node_value)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
-
-	*new_node = malloc(sizeof(stack_t));
-	if (!(*new_node))
+	for (i = 0; globals_var.new_node_value[i]; i++)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		if ((globals_var.new_node_value[i] < '0' ||
+			globals_var.new_node_value[i] > '9')
+			&& globals_var.new_node_value[i] != '-')
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			exit(EXIT_FAILURE);
+		}
 	}
 
-	(*new_node)->n = value;
+	n = atoi(globals_var.new_node_value);
 
-	/* Check if the stack is empty*/
-	if (!(*stack))
-	{
-		(*new_node)->next = NULL;
-		(*new_node)->prev = NULL;
-		*stack = *new_node;
-	}
-	else
-	{
-		(*new_node)->next = *stack;
-		(*new_node)->prev = NULL;
-		(*stack)->prev = *new_node;
-		*stack = *new_node;
-	}
+	add_dnodeint_end(stack, n);
 }

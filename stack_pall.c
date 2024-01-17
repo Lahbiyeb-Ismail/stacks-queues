@@ -8,10 +8,14 @@
  * If the stack is empty, it exits with a failure status.
  *
  * @stack: Pointer to the pointer to the top of the stack.
+ * @line_number: The line number where the "pall" operation
+ * appears in the Monty file.
  */
 
-void stack_pall(stack_t **stack)
+void stack_pall(stack_t **stack, unsigned int line_number)
 {
+	(void)line_number;
+
 		/* Check if the stack is empty */
 	if (!(*stack))
 		exit(EXIT_FAILURE);
