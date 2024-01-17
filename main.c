@@ -18,6 +18,7 @@ int main(int argc, char **argv)
 		/* Print a usage message to the console */
 		printf("USAGE: monty file\n");
 
+		free_memory();
 		/* Return EXIT_FAILURE to indicate an error*/
 		return (EXIT_FAILURE);
 	}
@@ -25,6 +26,7 @@ int main(int argc, char **argv)
 	/* Call the run_monty function with the provided filename */
 	run_monty(argv[1]);
 
+	free_memory();
 	/* Return EXIT_SUCCESS if everything executed successfully */
 	return (EXIT_SUCCESS);
 }

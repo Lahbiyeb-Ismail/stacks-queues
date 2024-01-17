@@ -61,6 +61,7 @@ void run_monty(char *filename);
 void free_stack(stack_t **stack);
 void (*get_opcodes(char *opcode))(stack_t **stack, unsigned int line_number);
 stack_t *add_dnodeint_end(stack_t **head, const int n);
+void free_memory(void);
 
 /* TASK-0 */
 /* pushes an element to the stack. */

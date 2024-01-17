@@ -43,6 +43,7 @@ void run_monty(char *filename)
 	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
+		free_memory();
 		exit(EXIT_FAILURE);
 	}
 
@@ -61,14 +62,12 @@ void run_monty(char *filename)
 			else
 			{
 				fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
+				free_memory();
 				exit(EXIT_FAILURE);
 			}
 
 		}
 		line_number++;
 	}
-
-	fclose(file);
-	free_stack(&Stack);
 }
 
