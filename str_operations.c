@@ -17,7 +17,7 @@ void pchar_func(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack))
 	{
-		fprintf(stderr, "L%u: can't pchar, stack too short\n", line_number);
+		fprintf(stderr, "L%u: can't pchar, stack empty\n", line_number);
 		free_memory();
 		exit(EXIT_FAILURE);
 	}
