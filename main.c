@@ -2,19 +2,24 @@
 
 globals_t global_var;
 
+/**
+ * free_memory - frees the global variables
+ *
+ * Return: no return
+ */
+void free_memory(void)
+{
+	free_dlistint(global_var.head);
+	free(global_var.buffer);
+	fclose(global_var.file);
+}
 
 /**
- * init_global_var - Initializes global variables for the Monty bytecode
- * interpreter.
+ * init_global_var - initializes the global variables
  *
- * Description: This function sets initial values for global variables used
- * in the Monty bytecode interpreter. It specifically initializes value, head,
- * file, buffer, line_count, and lifo members of the global_var structure.
- *
- * @file: A pointer to the FILE structure representing the Monty
- * bytecode file.
+ * @file: file descriptor
+ * Return: no return
  */
-
 void init_global_var(FILE *file)
 {
 	global_var.value = NULL;
@@ -25,38 +30,14 @@ void init_global_var(FILE *file)
 	global_var.lifo = 1;
 }
 
-
 /**
- * free_memory - Frees memory allocated for Monty bytecode interpreter.
+ * check_input - checks if the file exists and if the file can
+ * be opened
  *
- * Description: This function releases the memory allocated for the dynamic
- * linked list, buffer, and closes the Monty bytecode file. It is intended
- * to be called when the program is about to exit to ensure proper memory
- * cleanup.
+ * @argc: argument count
+ * @argv: argument vector
+ * Return: file struct
  */
-
-void free_memory(void)
-{
-	free_dlistint(global_var.head);
-	free(global_var.buffer);
-	fclose(global_var.file);
-}
-
-/**
- * check_file_input - Checks and opens the Monty bytecode file for input.
- *
- * This function validates the command-line input, ensuring that the correct
- * number of arguments is provided. It then attempts to open the Monty bytecode
- * file specified in the command-line arguments for reading. If successful,
- * it returns the file pointer; otherwise, it prints an error message and exits
- * with failure status.
- *
- * @argc: The number of command-line arguments.
- * @argv: An array of strings representing the command-line arguments.
- *
- * Return: The file pointer to the opened Monty bytecode file.
- */
-
 FILE *check_file_input(int argc, char *argv[])
 {
 	FILE *file;
@@ -83,10 +64,8 @@ FILE *check_file_input(int argc, char *argv[])
  *
  * @argc: argument count
  * @argv: argument vector
- *
  * Return: 0 on success
  */
-
 int main(int argc, char *argv[])
 {
 	FILE *file;
@@ -100,4 +79,3 @@ int main(int argc, char *argv[])
 
 	return (0);
 }
-
