@@ -13,7 +13,7 @@
 
 void run_monty(FILE *file)
 {
-	void (*f)(stack_t **stack, unsigned int line_number);
+	void (*f)(stack_t **, unsigned int line_number);
 
 	size_t size = 256;
 	ssize_t num_lines = 0;
@@ -23,19 +23,19 @@ void run_monty(FILE *file)
 
 	while (num_lines != -1)
 	{
-		lines[0] = _strtok(global_var.buffer, " \t\n");
+		lines[0] = strtok(global_var.buffer, " \t\n");
 		if (lines[0] && lines[0][0] != '#')
 		{
 			f = get_opcodes(lines[0]);
 			if (!f)
 			{
-				dprintf(2, "L%u: ", global_var.line_count);
-				dprintf(2, "unknown instruction %s\n", lines[0]);
+				fprintf(stderr, "L%u: unknown instruction %s\n",
+					global_var.line_count, lines[0]);
 				free_memory();
 				exit(EXIT_FAILURE);
 			}
 
-			global_var.value = _strtok(NULL, " \t\n");
+			global_var.value = strtok(NULL, " \t\n");
 			f(&global_var.head, global_var.line_count);
 		}
 
