@@ -28,6 +28,7 @@ typedef struct stack_s
 
 /**
  * struct globals_var - global structure to use in the functions
+ * @lifo: first parameter inside the current line
  * @value: second parameter inside the current line
  * @head: doubly linked list head
  * @file: file descriptor
@@ -39,6 +40,7 @@ typedef struct stack_s
  */
 typedef struct globals_var
 {
+	int lifo;
 	char *value;
 	stack_t *head;
 	FILE *file;
@@ -62,23 +64,9 @@ typedef struct instruction_s
 
 extern globals_t global_var;
 
-void stack_push(stack_t **stack, unsigned int line_number);
-void stack_pall(stack_t **stack, unsigned int line_number);
-void _pint(stack_t **doubly, unsigned int cline);
-void _pop(stack_t **doubly, unsigned int cline);
-void _swap(stack_t **doubly, unsigned int cline);
-void _queue(stack_t **doubly, unsigned int cline);
-void _stack(stack_t **doubly, unsigned int cline);
-void _add(stack_t **doubly, unsigned int cline);
-void _nop(stack_t **doubly, unsigned int cline);
-void _sub(stack_t **doubly, unsigned int cline);
-void _div(stack_t **doubly, unsigned int cline);
-void _mul(stack_t **doubly, unsigned int cline);
-void _mod(stack_t **doubly, unsigned int cline);
-void _pchar(stack_t **doubly, unsigned int cline);
-void _pstr(stack_t **doubly, unsigned int cline);
-void _rotl(stack_t **doubly, unsigned int cline);
-void _rotr(stack_t **doubly, unsigned int cline);
+void push_func(stack_t **stack, unsigned int line_number);
+void pall_func(stack_t **stack, unsigned int line_number);
+
 
 /*get function*/
 void (*get_opcodes(char *opc))(stack_t **stack, unsigned int line_number);
@@ -97,5 +85,6 @@ void free_dlistint(stack_t *head);
 
 /* main */
 void free_memory(void);
+FILE *check_file_input(int argc, char *argv[]);
 
 #endif

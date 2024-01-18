@@ -26,7 +26,8 @@ void init_global_var(FILE *file)
 	global_var.head = NULL;
 	global_var.file = file;
 	global_var.buffer = NULL;
-	global_var.line_count = 0;
+	global_var.line_count = 1;
+	global_var.lifo = 1;
 }
 
 /**
@@ -37,11 +38,11 @@ void init_global_var(FILE *file)
  * @argv: argument vector
  * Return: file struct
  */
-FILE *check_input(int argc, char *argv[])
+FILE *check_file_input(int argc, char *argv[])
 {
 	FILE *file;
 
-	if (argc == 1 || argc > 2)
+	if (argc != 2)
 	{
 		dprintf(2, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
@@ -49,7 +50,7 @@ FILE *check_input(int argc, char *argv[])
 
 	file = fopen(argv[1], "r");
 
-	if (file == NULL)
+	if (!file)
 	{
 		dprintf(2, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
@@ -70,13 +71,14 @@ int main(int argc, char *argv[])
 	void (*f)(stack_t * *stack, unsigned int line_number);
 	FILE *file;
 	size_t size = 256;
-	ssize_t nlines = 0;
+	ssize_t num_lines = 0;
 	char *lines[2] = { NULL, NULL };
 
-	file = check_input(argc, argv);
+	file = check_file_input(argc, argv);
 	init_global_var(file);
-	nlines = getline(&global_var.buffer, &size, file);
-	while (nlines != -1)
+	num_lines = getline(&global_var.buffer, &size, file);
+
+	while (num_lines != -1)
 	{
 		lines[0] = _strtok(global_var.buffer, " \t\n");
 		if (lines[0] && lines[0][0] != '#')
@@ -92,7 +94,7 @@ int main(int argc, char *argv[])
 			global_var.value = _strtok(NULL, " \t\n");
 			f(&global_var.head, global_var.line_count);
 		}
-		nlines = getline(&global_var.buffer, &size, file);
+		num_lines = getline(&global_var.buffer, &size, file);
 		global_var.line_count++;
 	}
 

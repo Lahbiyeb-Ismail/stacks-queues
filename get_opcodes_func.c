@@ -10,15 +10,15 @@
 void (*get_opcodes(char *opcode))(stack_t **stack, unsigned int line_number)
 {
 	instruction_t instruct[] = {
-		{"push", stack_push},
-		{"pall", stack_pall},
+		{"push", push_func},
+		{"pall", pall_func},
 		{NULL, NULL}
 	};
 	int i;
 
 	for (i = 0; instruct[i].opcode; i++)
 	{
-		if (strcmp(instruct[i].opcode, opcode) == 0)
+		if (_strcmp(instruct[i].opcode, opcode) == 0)
 			break;
 	}
 

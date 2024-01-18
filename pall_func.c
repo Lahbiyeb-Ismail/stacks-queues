@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * stack_pall - Prints all elements of the stack.
+ * pall_func - Prints all elements of the stack.
  *
  * Description: This function prints the values of all elements in
  * the stack from the top to the bottom.
@@ -12,7 +12,7 @@
  * appears in the Monty file.
  */
 
-void stack_pall(stack_t **stack, unsigned int line_number)
+void pall_func(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
 

@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * stack_push - Pushes a new element onto the stack.
+ * push_func - Pushes a new element onto the stack.
  *
  * Description: This function adds a new element with the specified value
  * to the top of the stack. If the value is zero, it prints an error message
@@ -12,7 +12,7 @@
  * appears in the Monty file.
  */
 
-void stack_push(stack_t **stack, unsigned int line_number)
+void push_func(stack_t **stack, unsigned int line_number)
 {
 	int n, i;
 
