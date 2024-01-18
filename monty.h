@@ -64,8 +64,6 @@ typedef struct instruction_s
 
 extern globals_t global_var;
 
-void run_monty(FILE *file);
-void init_global_var(FILE *file);
 
 /* TASK-0: */
 /* push pushes an element to the stack. */
@@ -132,6 +130,8 @@ stack_t *add_dnodeint(stack_t **head, const int n);
 void free_dlistint(stack_t *head);
 
 /* main */
+void run_monty(FILE *file);
+void init_global_var(FILE *file);
 void free_memory(void);
 FILE *check_file_input(int argc, char *argv[]);
 

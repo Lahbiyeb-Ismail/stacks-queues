@@ -4,26 +4,42 @@ globals_t global_var;
 
 
 /**
- * main - Entry point
+ * init_global_var - Initializes global variables for the Monty bytecode
+ * interpreter.
  *
- * @argc: argument count
- * @argv: argument vector
+ * Description: This function sets initial values for global variables used
+ * in the Monty bytecode interpreter. It specifically initializes value, head,
+ * file, buffer, line_count, and lifo members of the global_var structure.
  *
- * Return: 0 on success
+ * @file: A pointer to the FILE structure representing the Monty
+ * bytecode file.
  */
 
-int main(int argc, char *argv[])
+void init_global_var(FILE *file)
 {
-	FILE *file;
+	global_var.value = NULL;
+	global_var.head = NULL;
+	global_var.file = file;
+	global_var.buffer = NULL;
+	global_var.line_count = 1;
+	global_var.lifo = 1;
+}
 
-	file = check_file_input(argc, argv);
-	init_global_var(file);
 
-	run_monty(file);
+/**
+ * free_memory - Frees memory allocated for Monty bytecode interpreter.
+ *
+ * Description: This function releases the memory allocated for the dynamic
+ * linked list, buffer, and closes the Monty bytecode file. It is intended
+ * to be called when the program is about to exit to ensure proper memory
+ * cleanup.
+ */
 
-	free_memory();
-
-	return (0);
+void free_memory(void)
+{
+	free_dlistint(global_var.head);
+	free(global_var.buffer);
+	fclose(global_var.file);
 }
 
 /**
@@ -61,3 +77,27 @@ FILE *check_file_input(int argc, char *argv[])
 
 	return (file);
 }
+
+/**
+ * main - Entry point
+ *
+ * @argc: argument count
+ * @argv: argument vector
+ *
+ * Return: 0 on success
+ */
+
+int main(int argc, char *argv[])
+{
+	FILE *file;
+
+	file = check_file_input(argc, argv);
+	init_global_var(file);
+
+	run_monty(file);
+
+	free_memory();
+
+	return (0);
+}
+
