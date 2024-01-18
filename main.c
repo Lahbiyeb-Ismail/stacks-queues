@@ -68,35 +68,12 @@ FILE *check_file_input(int argc, char *argv[])
  */
 int main(int argc, char *argv[])
 {
-	void (*f)(stack_t * *stack, unsigned int line_number);
 	FILE *file;
-	size_t size = 256;
-	ssize_t num_lines = 0;
-	char *lines[2] = { NULL, NULL };
 
 	file = check_file_input(argc, argv);
 	init_global_var(file);
-	num_lines = getline(&global_var.buffer, &size, file);
 
-	while (num_lines != -1)
-	{
-		lines[0] = _strtok(global_var.buffer, " \t\n");
-		if (lines[0] && lines[0][0] != '#')
-		{
-			f = get_opcodes(lines[0]);
-			if (!f)
-			{
-				dprintf(2, "L%u: ", global_var.line_count);
-				dprintf(2, "unknown instruction %s\n", lines[0]);
-				free_memory();
-				exit(EXIT_FAILURE);
-			}
-			global_var.value = _strtok(NULL, " \t\n");
-			f(&global_var.head, global_var.line_count);
-		}
-		num_lines = getline(&global_var.buffer, &size, file);
-		global_var.line_count++;
-	}
+	run_monty(file);
 
 	free_memory();
 

@@ -17,10 +17,6 @@ void pall_func(stack_t **stack, unsigned int line_number)
 	stack_t *curr_node;
 	(void)line_number;
 
-		/* Check if the stack is empty */
-	if (!(*stack))
-		exit(EXIT_FAILURE);
-
 	curr_node = *stack;
 
 /* Iterate through the stack and print each element */

@@ -64,6 +64,8 @@ typedef struct instruction_s
 
 extern globals_t global_var;
 
+void run_monty(FILE *file);
+
 void push_func(stack_t **stack, unsigned int line_number);
 void pall_func(stack_t **stack, unsigned int line_number);
 
