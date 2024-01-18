@@ -81,6 +81,8 @@ void pchar_func(stack_t **stack, unsigned int line_number);
 void pstr_func(stack_t **stack, unsigned int line_number);
 void rotl_func(stack_t **stack, unsigned int line_number);
 void rotr_func(stack_t **stack, unsigned int line_number);
+void queue_func(stack_t **doubly, unsigned int line_number);
+void stack_func(stack_t **doubly, unsigned int line_number);
 
 
 /*get function*/
