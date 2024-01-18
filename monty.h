@@ -71,6 +71,7 @@ void pall_func(stack_t **stack, unsigned int line_number);
 void pint_func(stack_t **stack, unsigned int line_number);
 void pop_func(stack_t **stack, unsigned int line_number);
 void swap_func(stack_t **stack, unsigned int line_number);
+void add_func(stack_t **stack, unsigned int line_number);
 
 
 /*get function*/
@@ -91,5 +92,8 @@ void free_dlistint(stack_t *head);
 /* main */
 void free_memory(void);
 FILE *check_file_input(int argc, char *argv[]);
+
+/* Helper function */
+int stack_len(stack_t **stack);
 
 #endif

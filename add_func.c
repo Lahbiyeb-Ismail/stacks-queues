@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * swap_func - Swaps the top two elements of the stack.
+ * add_func - Swaps the top two elements of the stack.
  *
  * Description: This function swaps the positions of the top two elements
  * of the stack. It checks if the stack has at least two elements; if not,
@@ -13,7 +13,7 @@
  * in the Monty file.
  */
 
-void swap_func(stack_t **stack, unsigned int line_number)
+void add_func(stack_t **stack, unsigned int line_number)
 {
 	int len = stack_len(stack);
 	stack_t *tmp = NULL;
@@ -22,17 +22,14 @@ void swap_func(stack_t **stack, unsigned int line_number)
 
 	if (len < 2)
 	{
-		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
+		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
 		free_memory();
 		exit(EXIT_FAILURE);
 	}
 
-	tmp = *stack;
-	*stack = (*stack)->next;
+	tmp = (*stack)->next;
 
-	tmp->next = (*stack)->next;
-	tmp->prev = *stack;
+	tmp->n += (*stack)->n;
 
-	(*stack)->next = tmp;
-	(*stack)->prev = NULL;
+	pop_func(stack, line_number);
 }
