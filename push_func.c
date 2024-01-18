@@ -37,5 +37,8 @@ void push_func(stack_t **stack, unsigned int line_number)
 
 	n = atoi(global_var.value);
 
-	add_dnodeint_end(stack, n);
+	if (global_var.lifo == 1)
+		add_dnodeint(stack, n);
+	else
+		add_dnodeint_end(stack, n);
 }

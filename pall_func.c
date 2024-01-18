@@ -14,19 +14,22 @@
 
 void pall_func(stack_t **stack, unsigned int line_number)
 {
+	stack_t *curr_node;
 	(void)line_number;
 
 		/* Check if the stack is empty */
 	if (!(*stack))
 		exit(EXIT_FAILURE);
 
+	curr_node = *stack;
+
 /* Iterate through the stack and print each element */
-	while (*stack)
+	while (curr_node)
 	{
 			/* Print the value of the current element */
-		printf("%d\n", (*stack)->n);
+		printf("%d\n", curr_node->n);
 
 		/* Move to the next element in the stack */
-		*stack = (*stack)->next;
+		curr_node = curr_node->next;
 	}
 }
