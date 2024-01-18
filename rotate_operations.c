@@ -36,3 +36,40 @@ void rotl_func(stack_t **stack, unsigned int line_number)
 
 	*stack = tmp_1;
 }
+
+#include "monty.h"
+
+/**
+ * rotr_func - Swaps the top two elements of the stack.
+ *
+ * Description: This function swaps the positions of the top two elements
+ * of the stack. It checks if the stack has at least two elements; if not,
+ * it prints an error message and exits with failure status. Otherwise,
+ * it swaps the top two elements by adjusting the pointers accordingly.
+ *
+ * @stack: Pointer to the pointer to the top of the stack.
+ * @line_number: The line number where the "swap" operation appears
+ * in the Monty file.
+ */
+
+void rotr_func(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = NULL;
+	(void)line_number;
+
+	if (!(*stack) || !(*stack)->next)
+		return;
+
+	tmp = (*stack);
+
+	for (; tmp->next; tmp = tmp->next)
+		;
+
+	tmp->prev->next = NULL;
+	tmp->next = *stack;
+
+	tmp->prev = NULL;
+	(*stack)->prev = tmp;
+
+	*stack = tmp;
+}
