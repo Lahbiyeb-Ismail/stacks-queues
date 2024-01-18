@@ -1,15 +1,18 @@
 #include "monty.h"
 
 /**
- * pchar_func - Swaps the top two elements of the stack.
+ * pchar_func - Prints the ASCII character corresponding to the top element
+ * in the stack.
  *
- * Description: This function swaps the positions of the top two elements
- * of the stack. It checks if the stack has at least two elements; if not,
- * it prints an error message and exits with failure status. Otherwise,
- * it swaps the top two elements by adjusting the pointers accordingly.
+ * Description:
+ * This function prints the ASCII character represented by the value of the top
+ * element in the stack. It checks if the stack is empty and if the value is
+ * within the valid ASCII range (0 to 127). If the stack is empty or the value
+ * is out of range, it prints an error message and exits with failure status.
+ * Otherwise, it prints the character followed by a newline.
  *
  * @stack: Pointer to the pointer to the top of the stack.
- * @line_number: The line number where the "swap" operation appears
+ * @line_number: The line number where the "pchar" operation appears
  * in the Monty file.
  */
 
@@ -33,16 +36,19 @@ void pchar_func(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * pstr_func - Swaps the top two elements of the stack.
+ *  pstr_func - Prints the string represented by the ASCII values in the stack.
  *
- * Description: This function swaps the positions of the top two elements
- * of the stack. It checks if the stack has at least two elements; if not,
- * it prints an error message and exits with failure status. Otherwise,
- * it swaps the top two elements by adjusting the pointers accordingly.
+ * Description:
+ * This function prints the string represented by the ASCII values in the
+ * stack. It iterates through the stack, starting from the top, and prints
+ * characters until it encounters a value outside the valid ASCII range
+ * (0 to 127) or reaches the end of the stack. It does not consider values
+ * less than or equal to 0 or greater than or equal to 128 in the stack.
+ * The resulting string is printed followed by a newline.
  *
  * @stack: Pointer to the pointer to the top of the stack.
- * @line_number: The line number where the "swap" operation appears
- * in the Monty file.
+ * @line_number: The line number where the "pstr" operation appears
+ * in the Monty file (not used).
  */
 
 void pstr_func(stack_t **stack, unsigned int line_number)

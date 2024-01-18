@@ -1,12 +1,21 @@
 #include "monty.h"
 
 /**
- * get_opcodes - selects the correct opcode to perform
+ * get_opcodes - Retrieves the corresponding function for a given opcode.
  *
- * @opcode: opcode passed
+ * Description:
+ * This function takes an opcode as input and searches for a matching opcode in
+ * an array of instructions. If a match is found, it returns the associated
+ * function.
+ * If no match is found, it returns NULL. The array of instructions includes
+ * supported opcodes and their corresponding functions.
  *
- * Return: pointer to the function that executes the opcode
+ * @opcode: The opcode to find the corresponding function for.
+ *
+ * Return: A function pointer to the corresponding operation, or NULL
+ * if no match is found.
  */
+
 void (*get_opcodes(char *opcode))(stack_t **stack, unsigned int line_number)
 {
 	instruction_t instruct[] = {

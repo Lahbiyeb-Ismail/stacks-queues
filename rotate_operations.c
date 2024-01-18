@@ -1,16 +1,18 @@
 #include "monty.h"
 
 /**
- * rotl_func - Swaps the top two elements of the stack.
+ * rotl_func - Rotates the stack to the top, moving the top element to
+ * the bottom.
  *
- * Description: This function swaps the positions of the top two elements
- * of the stack. It checks if the stack has at least two elements; if not,
- * it prints an error message and exits with failure status. Otherwise,
- * it swaps the top two elements by adjusting the pointers accordingly.
+ * Description:
+ * This function rotates the stack to the top, moving the top element
+ * to the bottom. It checks if the stack is empty or has only one element;
+ * if so, it does nothing. Otherwise, it performs the rotation by updating
+ * the pointers accordingly.
  *
  * @stack: Pointer to the pointer to the top of the stack.
- * @line_number: The line number where the "swap" operation appears
- * in the Monty file.
+ * @line_number: The line number where the "rotl" operation appears
+ * in the Monty file (not used).
  */
 
 void rotl_func(stack_t **stack, unsigned int line_number)
@@ -37,19 +39,20 @@ void rotl_func(stack_t **stack, unsigned int line_number)
 	*stack = tmp_1;
 }
 
-#include "monty.h"
 
 /**
- * rotr_func - Swaps the top two elements of the stack.
+ * rotr_func - Rotates the stack to the bottom, moving the bottom element
+ * to the top.
  *
- * Description: This function swaps the positions of the top two elements
- * of the stack. It checks if the stack has at least two elements; if not,
- * it prints an error message and exits with failure status. Otherwise,
- * it swaps the top two elements by adjusting the pointers accordingly.
+ * Description:
+ * This function rotates the stack to the bottom, moving the bottom
+ * element to the top. It checks if the stack is empty or has only
+ * one element; if so, it does nothing. Otherwise, it performs the
+ * rotation by updating the pointers accordingly.
  *
  * @stack: Pointer to the pointer to the top of the stack.
- * @line_number: The line number where the "swap" operation appears
- * in the Monty file.
+ * @line_number: The line number where the "rotr" operation appears
+ * in the Monty file (not used).
  */
 
 void rotr_func(stack_t **stack, unsigned int line_number)
